@@ -23,4 +23,7 @@
     <Compile Remove="Views\YahooPage.xaml.cs" />
     <Compile Remove="Common\BindableBase.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="README.md" />
+  </ItemGroup>
 </Project>

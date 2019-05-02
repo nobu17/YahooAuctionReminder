@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooAuctionRemainder.Andro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooAuctionRemainder.iOS", "YahooAuctionRemainder\YahooAuctionRemainder.iOS\YahooAuctionRemainder.iOS.csproj", "{712652AA-3771-484F-9DBE-2285F5128B03}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{91F42D58-8654-49F4-87FF-5EDE8A8E30F2}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
