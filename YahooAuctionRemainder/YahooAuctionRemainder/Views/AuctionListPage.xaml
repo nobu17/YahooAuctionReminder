@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YahooAuctionRemainder.Views.AuctionListPage"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             x:Name="page">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0"/>
+    </ContentPage.Padding>
+    <ContentPage.Behaviors>
+        <b:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding Appearing}"/>      
+    </ContentPage.Behaviors>
+    <StackLayout Orientation="Vertical">
+        <ListView ItemsSource="{Binding Model.ItemList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                  HasUnevenRows="true" IsPullToRefreshEnabled="true"
+                  RefreshCommand="{Binding Refreshing}" IsRefreshing="{Binding IsRefreshing}"
+                  >
+        <ListView.Behaviors>
+            <b:EventToCommandBehavior
+                    EventName="ItemSelected"
+                    EventArgsParameterPath="SelectedItem"
+                    Command="{Binding ItemSelected}"/>
+        </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="*"/>
+                              <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" HeightRequest="50" Source="{Binding ImageUrl}"/>
+                            <StackLayout Grid.Column="1" Orientation="Vertical" Padding="0,5,0,5">
+                                <Label Text="{Binding ItemTitle}"/>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Margin="0,5,0,5" Text="{Binding CurrentPrice}"></Label>
+                                    <Label Margin="0,5,0,5" Text="{Binding BidStutas}"></Label>
+                                    <Label Margin="0,5,0,5" Text="{Binding LeftTimeString}"></Label>
+
+                                    <Switch IsToggled="{Binding IsReminder}">
+                                        <Switch.Behaviors>
+                                            <b:EventToCommandBehavior
+                                                        EventName="Toggled"
+                                                        CommandParameter="{Binding AuctionId}"
+                                                        Command="{Binding BindingContext.Toggled, Source={x:Reference page}}"/>
+<!--                                            <b:EventToCommandBehavior
+                                                        EventName="Toggled"
+
+                                                        EventArgsParameterPath="Value"
+                                                        Command="{Binding BindingContext.Toggled, Source={x:Reference page}}"/>-->
+                                        </Switch.Behaviors>
+                                    </Switch>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

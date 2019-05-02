@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:YahooAuctionRemainder"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"  
+             x:Class="YahooAuctionRemainder.Views.YahooWebForDetailPage"
+             NavigationPage.HasBackButton="false"
+
+             >
+    <ContentPage.Behaviors>
+        <b:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding Appearing}"/>
+    </ContentPage.Behaviors>>
+     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator IsRunning="{Binding IsLoading}" Color="Red" />
+            <Label Text="{Binding LoadingMessage}"/>
+        </StackLayout>
+
+
+        
+        <local:WebView2 Source="{Binding SourceUrl,Mode=TwoWay}" Grid.Row="0"
+                        NavigatedCommand="{Binding Navigated}"
+                        NavigatingCommand="{Binding Navigating}"
+                        EvaluateJavascript="{Binding EvaluateJavascript}, Mode=OneWayToSource}" 
+                        IsVisible="{Binding IsWebViewVisible}"
+                         />
+    </Grid>
+</ContentPage>

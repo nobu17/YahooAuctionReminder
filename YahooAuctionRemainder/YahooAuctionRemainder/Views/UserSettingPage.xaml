@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="YahooAuctionRemainder.Views.UserSettingPage">
+    <!--iOSの場合は上部に余白を設ける-->
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0,40,0,0"/>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+             <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Text="アラーム一覧" Margin="15,10,5,0"/>
+            <Button Grid.Row="0" Grid.Column="1" BackgroundColor="Blue" TextColor="White" Text="表示" Command="{Binding GotoAlermStatePage}"/>
+                        
+            <Label Grid.Row="1" Grid.Column="0" Text="キャッシュクリア(Auction)" Margin="15,10,5,0"/>
+            <Button Grid.Row="1" Grid.Column="1" BackgroundColor="Blue" TextColor="White" Text="実行" Command="{Binding ClearAuctionCache}"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="キャッシュクリア(Toggle)" Margin="15,10,5,0"/>
+            <Button Grid.Row="2" Grid.Column="1" BackgroundColor="Blue" TextColor="White" Text="実行" Command="{Binding ClearToggleCache}"/>
+        </Grid>
+        
+<!--        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Horizontal">
+                <Label Margin="5,10,5,0" HorizontalOptions="StartAndExpand">項目</Label>
+                <Switch HorizontalOptions="CenterAndExpand"></Switch>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Margin="5,10,5,0" HorizontalOptions="StartAndExpand">通知時間(分前)</Label>
+                <Entry Keyboard="Numeric"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Margin="5,10,5,0" HorizontalOptions="StartAndExpand">オークション詳細キャッシュリセット</Label>
+                <Button Command="{Binding ClearAlert}" HorizontalOptions="CenterAndExpand" Text="実行"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Margin="5,10,5,0" HorizontalOptions="StartAndExpand">アラーム一覧を確認</Label>
+                <Button Command="{Binding GotoAlermStatePage}" HorizontalOptions="CenterAndExpand" Text="確認"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Margin="5,10,5,0" HorizontalOptions="StartAndExpand">TEST Alerm</Label>
+                <Button Command="{Binding MakeTestAlerm}" HorizontalOptions="CenterAndExpand" Text="確認"/>
+            </StackLayout>
+        </StackLayout>-->
+    </ContentPage.Content>
+</ContentPage>

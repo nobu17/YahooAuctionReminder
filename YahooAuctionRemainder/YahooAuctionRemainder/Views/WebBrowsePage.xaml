@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:YahooAuctionRemainder"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             x:Class="YahooAuctionRemainder.Views.WebBrowsePage"
+             Appearing="Handle_Appearing"
+             Disappearing="Handle_Disappearing"
+             >
+
+    <ContentPage.ToolbarItems>
+<!--        <ToolbarItem Text="進む" />
+            <ToolbarItem Text="戻る" >
+            <ToolbarItem.Icon>
+              <OnPlatform x:TypeArguments="FileImageSource"
+                          iOS=""
+                          Android=""
+                          WinPhone="setting.png" />
+            </ToolbarItem.Icon>
+        </ToolbarItem>-->
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <local:WebView2 x:Name="webView" Grid.Row="0"
+            Source="{Binding SourceUrl,Mode=TwoWay}"
+            NavigatedCommand="{Binding Navigated}"
+            NavigatingCommand="{Binding Navigating}"
+            EvaluateJavascript="{Binding EvaluateJavascript}, Mode=OneWayToSource}" 
+            IsVisible="{Binding IsWebViewVisible}"
+
+             />
+        <Grid Grid.Row="1">
+           <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Text="戻る" IsEnabled="{Binding CanGoBack, Source={Reference webView}}" >
+                <Button.Behaviors>
+                    <b:EventToCommandBehavior
+                            EventName="Clicked"
+                            Command="{Binding GoBack}"/>
+                </Button.Behaviors>
+            </Button>
+            <Button Grid.Column="1" Text="進む" IsEnabled="{Binding CanGoForward, Source={Reference webView}}" >
+                <Button.Behaviors>
+                    <b:EventToCommandBehavior
+                            EventName="Clicked"
+                            Command="{Binding GoForward}"/>
+                </Button.Behaviors>
+            </Button>
+        </Grid>
+    </Grid>
+
+</ContentPage>
